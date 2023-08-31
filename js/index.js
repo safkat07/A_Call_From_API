@@ -39,7 +39,7 @@ const handleLoadContent = async (categoryID) => {
    <figure><img class="w-72 mb-3  rounded-md h-44"  src=${content.thumbnail} alt="Shoes" /></figure>
   
     
-    <div class="flex gap-2 mt-5 mb-10">
+    <div class="flex gap-2 mt-3 mb-10">
     <div class="flex ">
     <img class="w-8 h-8 rounded-full"  src=${content.authors[0].profile_picture} alt="Shoes" />
     </div>
