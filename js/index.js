@@ -16,45 +16,50 @@ const handleApi = async () => {
   </div>
 
     `;
-    tabContainer.appendChild(div)
+    tabContainer.appendChild(div);
   });
 };
 
 const handleLoadContent = async (categoryID) => {
-const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryID}`)
-const data = await response.json()
-console.log(data.data);
-const cardContainer = document.getElementById('card-container')
-cardContainer.innerHTML=''
-data.data.forEach((content) =>{
-    const div = document.createElement('div')
+  const response = await fetch(
+    `https://openapi.programming-hero.com/api/videos/category/${categoryID}`
+  );
+  const data = await response.json();
+  console.log(data.data);
+  const cardContainer = document.getElementById("card-container");
+  cardContainer.innerHTML = "";
+  data.data.forEach((content) => {
+    const div = document.createElement("div");
     div.innerHTML = `
     
-    <div class="card card-compact w-72 h-72 my-5 bg-base-100 shadow-xl">
-  <figure><img  src=${content.thumbnail} alt="Shoes" /></figure>
-  <div class="card-body">
-    <h2 class="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
+
+  <figure><img class="w-72 mb-3 rounded-md h-44"  src=${content.thumbnail} alt="Shoes" /></figure>
+  
+    
+    <div class="flex gap-2 mt-5 mb-10">
+    <div class="flex ">
+    <img class="w-8 h-8 rounded-full"  src=${content.authors[0].profile_picture} alt="Shoes" />
     </div>
-  </div>
-</div>
+    <div class="flex flex-col">
+    <h2 class="text-xl font-bold">${content.title}</h2>
+    <h2 class="">${content.authors[0].profile_name}<span>verfiy</span></h2>
+    <h2>${content.others.views} views</h2>
+    
+    </div>
+    </div>
+   
+    
+    
+    
+  
+
     
     `;
 
-    cardContainer.appendChild(div)
-})
-
-
-
-
-
-
+    cardContainer.appendChild(div);
+  });
 };
-
 
 //callling the main api funciton
 handleApi();
-handleLoadContent("1000")
-
+handleLoadContent("1000");
