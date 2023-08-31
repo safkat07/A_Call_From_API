@@ -47,13 +47,6 @@ const handleLoadContent = async (categoryID) => {
     
     </div>
     </div>
-   
-    
-    
-    
-  
-
-    
     `;
 
     cardContainer.appendChild(div);
