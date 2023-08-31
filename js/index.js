@@ -1,3 +1,4 @@
+
 //creating the main api funtion
 const handleApi = async () => {
   const response = await fetch(
@@ -43,7 +44,11 @@ const handleLoadContent = async (categoryID) => {
     <div class="flex flex-col">
     <h2 class="text-xl font-bold">${content.title}</h2>
     <h2 class="">${content.authors[0].profile_name}<span>verfiy</span></h2>
+    <div class="flex gap-2">
     <h2>${content.others.views} views</h2>
+    <p>${content.authors[0].verified? '<img class="w-4 mt-1.5" src="./fi_10629607.jpg" alt="">' : ''} 
+    </p>
+    </div>
     
     </div>
     </div>
