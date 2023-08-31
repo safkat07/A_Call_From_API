@@ -34,7 +34,9 @@ const handleLoadContent = async (categoryID) => {
     div.innerHTML = `
     
 
-  <figure><img class="w-72 mb-3 rounded-md h-44"  src=${content.thumbnail} alt="Shoes" /></figure>
+   <div class="grid justify-center ">
+   
+   <figure><img class="w-72 mb-3  rounded-md h-44"  src=${content.thumbnail} alt="Shoes" /></figure>
   
     
     <div class="flex gap-2 mt-5 mb-10">
@@ -52,6 +54,7 @@ const handleLoadContent = async (categoryID) => {
     
     </div>
     </div>
+   </div>
     `;
 
     cardContainer.appendChild(div);
