@@ -1,11 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-    <h2>hello</h2>
+  <header class="max-w-7xl mx-auto ">
+    <img class="my-10 mx-auto lg:w-96 w-60" src="./Logo.png" alt="">
+    <h2 class="text-center text-3xl lg:text-5xl font-bold">Frequently asked questions (FAQ)</h2>
+  </header>
+  <main class="max-w-7xl mx-auto my-16">
+    <div class="py-10">
+      <div class="collapse collapse-arrow bg-base-200">
+        <input type="radio" name="my-accordion-2" checked="checked" />
+        <div class="collapse-title text-xl font-medium">
+          Discuss the scope of var, let, and const!!
+        </div>
+        <div class="collapse-content">
+          <p>
+            <b>var:</b><br>
+            var is function-scoped, it means it can be accessed within the function where it is declared, regardless of
+            block scope.It also has a global scope.
+            <br>
+            <b>let:</b><br>
+            Let is a block-scoped, it can be only accessable within the block where it is declared, such as a loop or an
+            if statement. It allows for better control over variable scope and reduces the risk of variable pollution.
+            <br>
+            <b>const:</b><br>
+            const is a block-scoped, but it has it's own power.When we declare a variable as const , its value is fixed
+            , we can not change it or reassign the value.It's good to use for values that should not change.
+          </p>
+        </div>
+      </div>
+      <div class="collapse collapse-arrow bg-base-200">
+        <input type="radio" name="my-accordion-2" />
+        <div class="collapse-title text-xl font-medium">
+          Tell us the use cases of null and undefined
+        </div>
+        <div class="collapse-content">
+          <p><b>Undefined:</b><br>
+
+            In JavaScript the word Undefined menas that, when we declare a variable but the value of the variable was
+            not assigned, then if you console log the variable it will return us Undefined. <br>
+            <b>Example: Undefined</b><br>
+            var n; <br>
+            console.log(n);<br>
+            //undefined
+            <br>
+            <b>Null: </b><br>
+            On the other hand null is an object.When we intentionaly make absence of value of a variable, so that we can
+            reassign them when we need them.simpley Null means it's not there but it will be there when i need them.
+            <br>
+            <b>Example: Null</b><br>
+            var n = null;<br>
+
+            //but when i need the variable 
+            <br>
+            n = array.slice(0, 2);
+
+          </p>
+        </div>
+      </div>
+      <div class="collapse collapse-arrow bg-base-200">
+        <input type="radio" name="my-accordion-2" />
+        <div class="collapse-title text-xl font-medium">
+          What do you mean by REST API?
+        </div>
+        <div class="collapse-content">
+          <p><b>REST API:</b><br>
+            API or Application Programming Interface means it is a mechanisms that enabled two software components to
+            communicate with each other by a set a definitions and protocols. <br>
+            On the other hand REST API means Representational State Transfer Architectural Style API. It is a way of
+            accessing web services in a simple and flexible way without having any processing.
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
 </body>
+
 </html>
