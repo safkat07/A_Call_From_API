@@ -12,7 +12,7 @@ const handleApi = async () => {
     const div = document.createElement("div");
     div.innerHTML = `
   <div class="tabs  tabs-boxed">      
-  <a  id="tab-button" onclick="handleLoadContent('${category.category_id}')" class="tab text-black ">${category.category}</a>          
+  <a  id="tab-button" onclick="handleLoadContent('${category.category_id}')" class="tab text-black hover:bg-red-600 hover:text-white">${category.category}</a>          
   </div>
 
     `;
@@ -27,14 +27,13 @@ const handleLoadContent = async (categoryID) => {
   const data = await response.json();
   console.log(data.data);
 
-
   const cardContainer = document.getElementById("card-container");
   const emptyDivContainer = document.getElementById("empty-div");
 
   cardContainer.innerHTML = "";
 
   if (data.data.length == 0) {
-    console.log("say array empty");
+    
     const emptyDiv = document.createElement("div");
     emptyDivContainer.innerHTML = "";
     emptyDiv.innerHTML = `
@@ -55,30 +54,40 @@ const handleLoadContent = async (categoryID) => {
     emptyDivContainer.appendChild(emptyDiv);
   } else {
     emptyDivContainer.innerHTML = "";
+  
   }
 
   data.data.forEach((content) => {
     const div = document.createElement("div");
-    const postedDate = content.others.posted_date
-    console.log(postedDate);const seconds = 3665; // Replace with your desired number of seconds
+    const postedDate = content.others.posted_date;
+    console.log(postedDate);
+    const seconds = 3665; // Replace with your desired number of seconds
     const result = secondsToHoursMinutes(postedDate);
     // const finalShowHour = `${result.hours}hrs ${result.minutes} mins ago`
-    const finalShowHour = `${result.hours > 0 ? result.hours + 'hrs ' : ''}${result.minutes > 0 ? result.minutes + 'mins ago' : ''} `;
+    const finalShowHour = `${result.hours > 0 ? result.hours + "hrs " : ""}${
+      result.minutes > 0 ? result.minutes + "mins ago" : ""
+    } `;
     console.log(finalShowHour);
-    
+
     div.innerHTML = `
     
 
    <div class="grid justify-center ">
    
-   <figure class= "relative"><img  class="  w-72 mb-3  rounded-md h-44"  src=${
+   <figure>
+   <div class= "relative">
+   
+   <img  class="  w-72 mb-3  rounded-md h-44"  src=${
      content.thumbnail
-   } alt="Shoes" /></figure>
-   <div class="absolute  text-white text-xs flex lg:ml-40 ml-52 mt-36 lg:mt-36"> 
-   <p class= " border-solid text-end  bg-gray-900  px-2 ">
+   } alt="Shoes" />
+   
+   <div class="absolute  text-white text-xs flex bottom-0 right-0 mb-2  mr-2"> 
+   <p class= "rounded-sm border-solid text-end  bg-gray-900  px-2 ">
    ${finalShowHour}
    </p>
    </div>
+   </div>
+   </figure>
   
     
     <div class="flex gap-2 mt-3 mb-10">
@@ -117,24 +126,13 @@ const sortByView = (sortcategoryID) => {
   console.log("sort by  button");
 };
 
-// fetch data from api for second to hour
-// const showHourMinute = async (hourCategoryID) => {
-//   const response = await fetch(
-//     ` https://openapi.programming-hero.com/api/videos/category/${hourCategoryID}`
-//   );
-//   const data = await response.json();
-  
-//   console.log(result);
-// };
-
-// showHourMinute("1000");
 
 
 //seconds to hour
 
 function secondsToHoursMinutes(seconds) {
-  const hours = Math.floor(seconds / 3600); 
-  const minutes = Math.floor((seconds % 3600) / 60); 
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
 
   return {
     hours: hours,
