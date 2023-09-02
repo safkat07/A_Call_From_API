@@ -25,18 +25,21 @@ const handleLoadContent = async (categoryID) => {
     `https://openapi.programming-hero.com/api/videos/category/${categoryID}`
   );
   const data = await response.json();
-  console.log(data.data);
+  // console.log(data.data);
+  const videoData = data.data;
+  view = videoData;
+  sortingVideoData(videoData);
+};
+  const sortingVideoData = (videoData) => {
+    const cardContainer = document.getElementById("card-container");
+    const emptyDivContainer = document.getElementById("empty-div");
 
-  const cardContainer = document.getElementById("card-container");
-  const emptyDivContainer = document.getElementById("empty-div");
+    cardContainer.innerHTML = "";
 
-  cardContainer.innerHTML = "";
-
-  if (data.data.length == 0) {
-    
-    const emptyDiv = document.createElement("div");
-    emptyDivContainer.innerHTML = "";
-    emptyDiv.innerHTML = `
+    if (videoData.length == 0) {
+      const emptyDiv = document.createElement("div");
+      emptyDivContainer.innerHTML = "";
+      emptyDiv.innerHTML = `
     <div class= "flex flex-col items-center justify-center" >
     <div>
     <img class= "  flex justify-center" src="./Icon.png" alt="">
@@ -51,25 +54,24 @@ const handleLoadContent = async (categoryID) => {
     </div>
     
     `;
-    emptyDivContainer.appendChild(emptyDiv);
-  } else {
-    emptyDivContainer.innerHTML = "";
-  
-  }
+      emptyDivContainer.appendChild(emptyDiv);
+    } else {
+      emptyDivContainer.innerHTML = "";
+    }
 
-  data.data.forEach((content) => {
-    const div = document.createElement("div");
-    const postedDate = content.others.posted_date;
-    console.log(postedDate);
-    const seconds = 3665; // Replace with your desired number of seconds
-    const result = secondsToHoursMinutes(postedDate);
-    // const finalShowHour = `${result.hours}hrs ${result.minutes} mins ago`
-    const finalShowHour = `${result.hours > 0 ? result.hours + "hrs " : ""}${
-      result.minutes > 0 ? result.minutes + "mins ago" : ""
-    } `;
-    console.log(finalShowHour);
+    videoData.forEach((content) => {
+      const div = document.createElement("div");
+      const postedDate = content.others.posted_date;
+      console.log(postedDate);
+      const seconds = 3665; // Replace with your desired number of seconds
+      const result = secondsToHoursMinutes(postedDate);
+      // const finalShowHour = `${result.hours}hrs ${result.minutes} mins ago`
+      const finalShowHour = `${result.hours > 0 ? result.hours + "hrs " : ""}${
+        result.minutes > 0 ? result.minutes + "mins ago" : ""
+      } `;
+      console.log(finalShowHour);
 
-    div.innerHTML = `
+      div.innerHTML = `
     
 
    <div class="grid justify-center ">
@@ -114,22 +116,28 @@ const handleLoadContent = async (categoryID) => {
    </div>
     `;
 
-    cardContainer.appendChild(div);
-  });
-};
+      cardContainer.appendChild(div);
+    });
+  };
+
 
 //callling the main api funciton
+const sortByView = () => {
+  const dataSort = view.sort((a, b) => {
+    const item1 = a.others.views.split("");
+    item1.pop();
+    const number1 = item1.join("");
+    const item2 = b.others.views.split("");
+    item2.pop();
+    const number2 = item2.join("");
+    return number2 - number1;
+  });
+  sortingVideoData(dataSort);
+};
 handleApi();
 handleLoadContent("1000");
-//sort by view button
-const sortByView = (sortcategoryID) => {
-  console.log("sort by  button");
-};
-
-
 
 //seconds to hour
-
 function secondsToHoursMinutes(seconds) {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
